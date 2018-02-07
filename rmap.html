@@ -1,0 +1,909 @@
+<!-- saved from url=(0087)#d4e421 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>RMap ontology</title>
+      <title>RMap ontology</title>
+      <link href="./rmap_files/owl.css" rel="stylesheet" type="text/css">
+      <link href="./rmap_files/Primer.css" rel="stylesheet" type="text/css">
+      <link href="./rmap_files/rec.css" rel="stylesheet" type="text/css">
+      <link href="./rmap_files/extra.css" rel="stylesheet" type="text/css">
+      <link rel="shortcut icon" href="http://eelst.cs.unibo.it/apps/LODE/favicon.ico">
+      <script src="./rmap_files/jquery.js"></script><script src="./rmap_files/jquery.scrollTo.js"></script><script src="./rmap_files/marked.min.js"></script><script>
+         $(document).ready(
+             function () {
+             	jQuery(".markdown").each(function(el){
+         jQuery(this).after(marked(jQuery(this).text())).remove()});
+                 var list = $('a[name="http://www.essepuntato.it/tmp/1509997680-ontology"]');
+                 if (list.size() != 0) {
+                 	var element = list.first();
+                 	$.scrollTo(element);
+                 }
+             });
+      </script>
+   </head>
+   <body>
+      <div class="head">
+         <h1>RMap ontology</h1>
+         <dl>
+            <dt>IRI:</dt>
+            <dd>http://purl.org/ontology/rmap#</dd>
+            <dt>Version IRI:</dt>
+            <dd>http://purl.org/ontology/rmap/1.0#</dd>
+         </dl>
+         <dl>
+            <dt>Date:</dt>
+            <dd>12/09/2017</dd>
+         </dl>
+         <dl>
+            <dt>Authors:</dt>
+            <dd>Karen Hanson, Sheila Morrissey</dd>
+            <dt>Contributors:</dt>
+            <dd>Aaron Birkland, Tim DiLauro, Mark Donaghue
+            </dd>
+         </dl>
+         <dl>
+            <dt>Other visualisation:</dt>
+            <dd><a href="./rmap.owl">Ontology source</a></dd>
+         </dl>
+         <div class="copyright">
+            <p>This work is distributed under Creative Commons Attribution
+               License (<a href="http://creativecommons.org/licenses/by/3.0">http://creativecommons.org/licenses/by/3.0</a>)
+            </p>
+         </div>
+      </div>
+      <hr>
+      <h2>Abstract</h2>
+      <p>The RMap ontology supports the description of a
+         distributed scholarly work.  Maps of works are described in the form
+         of an rmap:DiSCO  - a simple, lightweight version of an OAI-ORE
+         Aggregation - with provenance information captured in an RMap Event,
+         and DiSCO creators described as RMap Agents.
+      </p>
+      <div id="toc">
+         <h2>Table of Content</h2>
+         <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#description">Description</a></li>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#objectproperties">Object Properties</a></li>
+            <li><a href="#dataproperties">Data Properties</a></li>
+            <li><a href="#namedindividuals">Named Individuals</a></li>
+            <li><a href="#namespacedeclarations">Namespace Declarations</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#acknowledgements">Acknowledgements</a></li>
+         </ol>
+      </div>
+      <div id="introduction">
+        <h2>Introduction </h2>
+        <span class="markdown">Today's scholarly works can be dynamic, distributed,
+          and complex. They can consist of multiple related components (article,
+           dataset, software, multimedia, webpage, etc.) that are made
+           available asynchronously, assigned a range of identifiers, and
+           stored in different repositories with uneven preservation policies.
+           The RMap ontology supports the description of the components of
+           distributed works and, optionally, the context around it.  The core
+           of the RMap model is the RMap DiSCO (Distributed Scholarly Compound
+           Object), which draws on concepts from OAI-ORE to provide a
+           lightweight Aggregation object that describes distributed scholarly
+           works.  To capture provenance of DiSCOs, there is a simple Event
+           model.  Agents generate Events and can act upon both Agents and
+           DiSCOs.  The RMap ontology drives the RMap system
+           (https://rmap-hub.org).</span>
+      </div>
+      <div>
+        <h2>Description</h2>
+        <span class="markdown">The diagram below shows one way in which RMap classes relate to each
+          other. The example shows a DiSCO creation. There are several other
+          rmap:eventTypes that define the type of relationship between the
+          rmap:Event and the rmap:Object that it acts upon.  Additional
+          statements can be added about the aggregated rdf:Resources using any
+          ontology as appropriate, provided the statements form a connected
+          graph with those rdf:Resources.</span>
+        <span><img src="images/RMapOntologyGraph.png" alt="ontology graph"
+            style="width: 80%; min-width: 25em; max-width: 40em; text-align: center;"></span>
+        <span class="markdown">Agents can also be generated by an Event, and an Agent can create
+          their own Agent record:</span>
+        <span><img src="images/RMapAgent.png" alt="ontology graph"
+            style="width: 50%; min-width: 15em; max-width: 30em; text-align: center;"></span>
+        <span class="markdown">For RDF examples of Events, DiSCOs and Agents, visit the RMap
+          wiki:</span>
+          <a href="https://rmap-project.atlassian.net/wiki/spaces/RMAPPS/pages/5472305/Media+Types">
+            https://rmap-project.atlassian.net/wiki/spaces/RMAPPS/pages/5472305/Media+Types</a>
+      </div>
+      <div id="classes">
+         <h2>Classes</h2>
+         <ul class="hlist">
+            <li><a href="#d4e444" title="http://www.w3.org/ns/prov#Activity"><span>activity</span></a></li>
+            <li><a href="#d4e343" title="http://purl.org/ontology/rmap#Administrator"><span>administrator</span></a></li>
+            <li><a href="#d4e331" title="http://purl.org/dc/terms/Agent"><span>agent</span></a></li>
+            <li><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent"><span>agent</span></a></li>
+            <li><a href="#d4e421" title="http://www.openarchives.org/ore/terms/Aggregation"><span>aggregation</span></a></li>
+            <li><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO"><span>DiSCO</span></a></li>
+            <li><a href="#d4e376" title="http://purl.org/ontology/rmap#Event"><span>event</span></a></li>
+            <li><a href="#d4e388" title="http://purl.org/ontology/rmap#EventTargetType"><span>event target type</span></a></li>
+            <li><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType"><span>event type</span></a></li>
+            <li><a href="#d4e405" title="http://purl.org/ontology/rmap#Object"><span>object</span></a></li>
+            <li><a href="#d4e433" title="http://www.w3.org/2000/01/rdf-schema#Resource"><span>resource</span></a></li>
+            <li><a href="#d4e413" title="http://purl.org/ontology/rmap#Status"><span>status</span></a></li>
+         </ul>
+         <div id="d4e444" class="entity">
+            <a name="http://www.w3.org/ns/prov#Activity"></a>
+            <h3>activity<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#Activity</p>
+            <div class="comment">
+               <p>An activity is something that occurs over a period of time and acts upon or with entities. See <a href="https://www.w3.org/TR/prov-o/#Activity">https://www.w3.org/TR/prov-o/#Activity</a></p>
+            </div>
+            <dl class="description"></dl>
+         </div>
+         <div id="d4e343" class="entity">
+            <a name="http://purl.org/ontology/rmap#Administrator"></a>
+            <h3>administrator<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Administrator</p>
+            <div class="comment">
+               <p>RMap Administrators are a specific type of RMap Agent with privileges to Administer an RMap system.</p>
+            </div>
+            <dl class="description">
+               <dt>has super-classes</dt>
+               <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e331" class="entity">
+            <a name="http://purl.org/dc/terms/Agent"></a>
+            <h3>agent<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/dc/terms/Agent</p>
+            <div class="comment">
+               <p>A resource that acts or has the power to act. See <a href="http://purl.org/dc/terms/Agent">http://purl.org/dc/terms/Agent</a></p>
+            </div>
+            <dl class="description">
+               <dt>is in range of</dt>
+               <dd><a href="#d4e45" title="http://purl.org/dc/terms/creator">creator</a><sup title="object property" class="type-op">op</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e353" class="entity">
+            <a name="http://purl.org/ontology/rmap#Agent"></a>
+            <h3>agent<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Agent</p>
+            <div class="comment">
+               <p>rmap:Agents can make changes to the RMap database. The rmap:Agent's URI is associated with each change they make on the database throught the rmap:Event.</p>
+            </div>
+            <dl class="description">
+               <dt>has super-classes</dt>
+               <dd><a href="#d4e405" title="http://purl.org/ontology/rmap#Object">object</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>has sub-classes</dt>
+               <dd><a href="#d4e343" title="http://purl.org/ontology/rmap#Administrator">administrator</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>is in domain of</dt>
+               <dd><a href="#d4e119" title="http://purl.org/ontology/rmap#hasStatus">has status</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e133" title="http://purl.org/ontology/rmap#identityProvider">identity provider</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e319" title="http://xmlns.com/foaf/0.1/name">name</a><sup title="data property" class="type-dp">dp</sup></dd>
+               <dt>is in range of</dt>
+               <dd><a href="#d4e230" title="http://www.w3.org/ns/prov#generated">generated</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e158" title="http://purl.org/ontology/rmap#lineageProgenitor">lineage progenitor</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e197" title="http://purl.org/ontology/rmap#updatedObject">updated object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e253" title="http://www.w3.org/ns/prov#wasAssociatedWith">was associated with</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>is also defined as</dt>
+               <dd><a href="#d4e457">named individual</a></dd>
+            </dl>
+         </div>
+         <div id="d4e421" class="entity">
+            <a name="http://www.openarchives.org/ore/terms/Aggregation"></a>
+            <h3>aggregation<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.openarchives.org/ore/terms/Aggregation</p>
+            <div class="comment">
+               <p>An Aggregation is a Resource of type ore:Aggregation that is a set of other Resources. The type ore:Aggregation is associated with a Resource via an assertion by at least one Resource Map.See <a href="http://www.openarchives.org/ore/1.0/datamodel#Aggregation">http://www.openarchives.org/ore/1.0/datamodel#Aggregation</a></p>
+            </div>
+            <dl class="description">
+               <dt>has sub-classes</dt>
+               <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e363" class="entity">
+            <a name="http://purl.org/ontology/rmap#DiSCO"></a>
+            <h3>DiSCO<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#DiSCO</p>
+            <div class="comment">
+               <p>rmap:DiSCO represents a Distributed Scholarly Compound Object. It is inspired by an ore:Aggregation, but is simplified. A DiSCO describes an aggregation of related resources plus additional information about the contents of the aggregation.</p>
+            </div>
+            <dl class="description">
+               <dt>has super-classes</dt>
+               <dd><a href="#d4e405" title="http://purl.org/ontology/rmap#Object">object</a><sup title="class" class="type-c">c</sup></dd>
+               <dd><a href="#d4e421" title="http://www.openarchives.org/ore/terms/Aggregation">aggregation</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>is in domain of</dt>
+               <dd><a href="#d4e217" title="http://www.openarchives.org/ore/terms/aggregates">aggregates</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e45" title="http://purl.org/dc/terms/creator">creator</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e280" title="http://purl.org/dc/terms/description">description</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d4e119" title="http://purl.org/ontology/rmap#hasStatus">has status</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e172" title="http://purl.org/ontology/rmap#providerId">provider id</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e244" title="http://www.w3.org/ns/prov#used">used</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e266" title="http://www.w3.org/ns/prov#wasGeneratedBy">was generated by</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>is in range of</dt>
+               <dd><a href="#d4e57" title="http://purl.org/ontology/rmap#deletedObject">deleted object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e69" title="http://purl.org/ontology/rmap#derivedObject">derived object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e230" title="http://www.w3.org/ns/prov#generated">generated</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e106" title="http://purl.org/ontology/rmap#hasSourceObject">has source object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e145" title="http://purl.org/ontology/rmap#inactivatedObject">inactivated object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e158" title="http://purl.org/ontology/rmap#lineageProgenitor">lineage progenitor</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e184" title="http://purl.org/ontology/rmap#tombstonedObject">tombstoned object</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>is also defined as</dt>
+               <dd><a href="#d4e468">named individual</a></dd>
+            </dl>
+         </div>
+         <div id="d4e376" class="entity">
+            <a name="http://purl.org/ontology/rmap#Event"></a>
+            <h3>event<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Event</p>
+            <div class="comment">
+               <p>rmap:Events track provenance and status for each rmap:DiSCO and rmap:Agent in the RMap database.</p>
+            </div>
+            <dl class="description">
+               <dt>is equivalent to</dt>
+               <dd><a href="#d4e444" title="http://www.w3.org/ns/prov#Activity">activity</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>has super-classes</dt>
+               <dd><a href="#d4e405" title="http://purl.org/ontology/rmap#Object">object</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>is in domain of</dt>
+               <dd><a href="#d4e57" title="http://purl.org/ontology/rmap#deletedObject">deleted object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e69" title="http://purl.org/ontology/rmap#derivedObject">derived object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e280" title="http://purl.org/dc/terms/description">description</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d4e294" title="http://www.w3.org/ns/prov#endedAtTime">ended at time</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d4e82" title="http://purl.org/ontology/rmap#eventTargetType">event target type</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e94" title="http://purl.org/ontology/rmap#eventType">event type</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e230" title="http://www.w3.org/ns/prov#generated">generated</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e106" title="http://purl.org/ontology/rmap#hasSourceObject">has source object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e145" title="http://purl.org/ontology/rmap#inactivatedObject">inactivated object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e158" title="http://purl.org/ontology/rmap#lineageProgenitor">lineage progenitor</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e307" title="http://www.w3.org/ns/prov#startedAtTime">started at time</a><sup title="data property" class="type-dp">dp</sup>, <a href="#d4e184" title="http://purl.org/ontology/rmap#tombstonedObject">tombstoned object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e197" title="http://purl.org/ontology/rmap#updatedObject">updated object</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e253" title="http://www.w3.org/ns/prov#wasAssociatedWith">was associated with</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>is in range of</dt>
+               <dd><a href="#d4e266" title="http://www.w3.org/ns/prov#wasGeneratedBy">was generated by</a><sup title="object property" class="type-op">op</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e388" class="entity">
+            <a name="http://purl.org/ontology/rmap#EventTargetType"></a>
+            <h3>event target type<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#EventTargetType</p>
+            <div class="comment">
+               <p>Class of the object that is affected by the event. Should be either <a href="http://purl.org/ontology/rmap#DiSCO">http://purl.org/ontology/rmap#DiSCO</a> or <a href="http://purl.org/ontology/rmap#Agent">http://purl.org/ontology/rmap#Agent</a></p>
+            </div>
+            <dl class="description">
+               <dt>is in range of</dt>
+               <dd><a href="#d4e82" title="http://purl.org/ontology/rmap#eventTargetType">event target type</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>has members</dt>
+               <dd><a href="#d4e457" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e468" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="named individual" class="type-ni">ni</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e396" class="entity">
+            <a name="http://purl.org/ontology/rmap#EventType"></a>
+            <h3>event type<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#EventType</p>
+            <div class="comment">
+               <p>Type of rmap:Event performed.</p>
+            </div>
+            <dl class="description">
+               <dt>is in range of</dt>
+               <dd><a href="#d4e94" title="http://purl.org/ontology/rmap#eventType">event type</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>has members</dt>
+               <dd><a href="#d4e488" title="http://purl.org/ontology/rmap#creation">creation</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e509" title="http://purl.org/ontology/rmap#deletion">deletion</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e519" title="http://purl.org/ontology/rmap#derivation">derivation</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e530" title="http://purl.org/ontology/rmap#inactivation">inactivation</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e550" title="http://purl.org/ontology/rmap#replace">replace</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e561" title="http://purl.org/ontology/rmap#tombstone">tombstone</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e581" title="http://purl.org/ontology/rmap#update">update</a><sup title="named individual" class="type-ni">ni</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e405" class="entity">
+            <a name="http://purl.org/ontology/rmap#Object"></a>
+            <h3>object<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Object</p>
+            <div class="comment">
+               <p>Parent class of the core objects found in RMap.</p>
+            </div>
+            <dl class="description">
+               <dt>has sub-classes</dt>
+               <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup>, <a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup>, <a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e433" class="entity">
+            <a name="http://www.w3.org/2000/01/rdf-schema#Resource"></a>
+            <h3>resource<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/2000/01/rdf-schema#Resource</p>
+            <div class="comment">
+               <p>All things described by RDF are resources and are instances of the class rdfs:Resource. See <a href="http://www.w3.org/TR/rdf-schema/#ch_resource">http://www.w3.org/TR/rdf-schema/#ch_resource</a></p>
+            </div>
+            <dl class="description">
+               <dt>is in range of</dt>
+               <dd><a href="#d4e217" title="http://www.openarchives.org/ore/terms/aggregates">aggregates</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e133" title="http://purl.org/ontology/rmap#identityProvider">identity provider</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e172" title="http://purl.org/ontology/rmap#providerId">provider id</a><sup title="object property" class="type-op">op</sup>, <a href="#d4e244" title="http://www.w3.org/ns/prov#used">used</a><sup title="object property" class="type-op">op</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e413" class="entity">
+            <a name="http://purl.org/ontology/rmap#Status"></a>
+            <h3>status<sup title="class" class="type-c">c</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Status</p>
+            <div class="comment">
+               <p>Status is documented as part of an event. An event changes the status of a DiSCO or Agent. It is recorded using one of the options in Status.</p>
+            </div>
+            <dl class="description">
+               <dt>is in range of</dt>
+               <dd><a href="#d4e119" title="http://purl.org/ontology/rmap#hasStatus">has status</a><sup title="object property" class="type-op">op</sup></dd>
+               <dt>has members</dt>
+               <dd><a href="#d4e478" title="http://purl.org/ontology/rmap#active">active</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e499" title="http://purl.org/ontology/rmap#deleted">deleted</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e540" title="http://purl.org/ontology/rmap#inactive">inactive</a><sup title="named individual" class="type-ni">ni</sup>, <a href="#d4e571" title="http://purl.org/ontology/rmap#tombstoned">tombstoned</a><sup title="named individual" class="type-ni">ni</sup></dd>
+            </dl>
+         </div>
+      </div>
+      <div id="objectproperties">
+         <h2>Object Properties</h2>
+         <ul class="hlist">
+            <li><a href="#d4e217" title="http://www.openarchives.org/ore/terms/aggregates"><span>aggregates</span></a></li>
+            <li><a href="#d4e45" title="http://purl.org/dc/terms/creator"><span>creator</span></a></li>
+            <li><a href="#d4e57" title="http://purl.org/ontology/rmap#deletedObject"><span>deleted object</span></a></li>
+            <li><a href="#d4e69" title="http://purl.org/ontology/rmap#derivedObject"><span>derived object</span></a></li>
+            <li><a href="#d4e82" title="http://purl.org/ontology/rmap#eventTargetType"><span>event target type</span></a></li>
+            <li><a href="#d4e94" title="http://purl.org/ontology/rmap#eventType"><span>event type</span></a></li>
+            <li><a href="#d4e230" title="http://www.w3.org/ns/prov#generated"><span>generated</span></a></li>
+            <li><a href="#d4e106" title="http://purl.org/ontology/rmap#hasSourceObject"><span>has source object</span></a></li>
+            <li><a href="#d4e119" title="http://purl.org/ontology/rmap#hasStatus"><span>has status</span></a></li>
+            <li><a href="#d4e133" title="http://purl.org/ontology/rmap#identityProvider"><span>identity provider</span></a></li>
+            <li><a href="#d4e145" title="http://purl.org/ontology/rmap#inactivatedObject"><span>inactivated object</span></a></li>
+            <li><a href="#d4e158" title="http://purl.org/ontology/rmap#lineageProgenitor"><span>lineage progenitor</span></a></li>
+            <li><a href="#d4e172" title="http://purl.org/ontology/rmap#providerId"><span>provider id</span></a></li>
+            <li><a href="#d4e184" title="http://purl.org/ontology/rmap#tombstonedObject"><span>tombstoned object</span></a></li>
+            <li><a href="#d4e197" title="http://purl.org/ontology/rmap#updatedObject"><span>updated object</span></a></li>
+            <li><a href="#d4e244" title="http://www.w3.org/ns/prov#used"><span>used</span></a></li>
+            <li><a href="#d4e209" title="http://purl.org/ontology/rmap#userAuthId"><span>user auth id</span></a></li>
+            <li><a href="#d4e253" title="http://www.w3.org/ns/prov#wasAssociatedWith"><span>was associated with</span></a></li>
+            <li><a href="#d4e266" title="http://www.w3.org/ns/prov#wasGeneratedBy"><span>was generated by</span></a></li>
+         </ul>
+         <div id="d4e217" class="entity">
+            <a name="http://www.openarchives.org/ore/terms/aggregates"></a>
+            <h3>aggregates<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.openarchives.org/ore/terms/aggregates</p>
+            <div class="comment">
+               <p>One or more rdfs:Resource can be aggregated by an rmap:DiSCO. The aggregated resources represent components of a scholarly object that are related to each other to form a compound representation of a work. A component can, for example, be a person, organization, dataset, webpage, article, sample, code, or anything else related to a scholarly work. Ideally, additional statements will be added to describe the components and their relationship to one another, but this is not a requirement.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e433" title="http://www.w3.org/2000/01/rdf-schema#Resource">resource</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e45" class="entity">
+            <a name="http://purl.org/dc/terms/creator"></a>
+            <h3>creator<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/dc/terms/creator</p>
+            <div class="comment">
+               <p>A dcterms:Agent responsible for creating this DiSCO. This is a user assertion that is displayed as part of the DiSCO. This is separate from the rmap:Agent URI captured as part of the DiSCO provenance.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e331" title="http://purl.org/dc/terms/Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e57" class="entity">
+            <a name="http://purl.org/ontology/rmap#deletedObject"></a>
+            <h3>deleted object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#deletedObject</p>
+            <div class="comment">
+               <p>The rmap:DiSCO deleted as a result of the rmap:Event. Note that a deletion represents a hard delete of the DiSCO in which the statements are removed. All that will remain after a deletion is the Events that describe the creation and deletion of the DiSCO.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e69" class="entity">
+            <a name="http://purl.org/ontology/rmap#derivedObject"></a>
+            <h3>derived object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#derivedObject</p>
+            <div class="comment">
+               <p>The rmap:DiSCO that was derived as a result of an update or derivation event against a DiSCO. DiSCOs are immutable, so when a DiSCO is updated, an Event indicates the location of the previous version as well as the new DiSCO that was derived from it (the derivedObject). A derivedObject can be generated under two Event types: (1) an update DiSCO Event occurs when the update is performed by the same rmap:Agent that created the original DiSCO, the previous version is inactivated (include inactivatedObject in the Event) and the new version is the derivedObject. (2) A derivation Event type occurs when an Agent that did not originally create a DiSCO generates a new version of it. In this instance the previous version stays the same as it was and the URI of that should be indicated using hasSourceObject. The new DiSCO is the derivedObject.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e82" class="entity">
+            <a name="http://purl.org/ontology/rmap#eventTargetType"></a>
+            <h3>event target type<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#eventTargetType</p>
+            <div class="comment">
+               <p>Type of object targeted by the rmap:Event</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e388" title="http://purl.org/ontology/rmap#EventTargetType">event target type</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e94" class="entity">
+            <a name="http://purl.org/ontology/rmap#eventType"></a>
+            <h3>event type<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#eventType</p>
+            <div class="comment">
+               <p>The type of rmap:Event</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e230" class="entity">
+            <a name="http://www.w3.org/ns/prov#generated"></a>
+            <h3>generated<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#generated</p>
+            <div class="comment">
+               <p>The rmap:DiSCO or rmap:Agent generated by the rmap:Event. This is used for creation Events, but can also be used in addition to rmap:derivedObject so that all Events that create a new object include a prov:generated property.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e106" class="entity">
+            <a name="http://purl.org/ontology/rmap#hasSourceObject"></a>
+            <h3>has source object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#hasSourceObject</p>
+            <div class="comment">
+               <p>For a derivation event, the hasSourceObject property represents the URI of the original DiSCO. hasSourceObject is used when an rmap:Agent creates a version of DiSCO that they did not originally create. It is used in conjunction with derivedObject, which represents the new version of the original object as asserted by this other Agent.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e119" class="entity">
+            <a name="http://purl.org/ontology/rmap#hasStatus"></a>
+            <h3>has status<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#hasStatus</p>
+            <div class="comment">
+               <p>The status of the DiSCO or Agent, can be determined by examining Events associated with it.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e413" title="http://purl.org/ontology/rmap#Status">status</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e133" class="entity">
+            <a name="http://purl.org/ontology/rmap#identityProvider"></a>
+            <h3>identity provider<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#identityProvider</p>
+            <div class="comment">
+               <p>The identity provider that was used to authenticate the rmap:Agent.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e433" title="http://www.w3.org/2000/01/rdf-schema#Resource">resource</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e145" class="entity">
+            <a name="http://purl.org/ontology/rmap#inactivatedObject"></a>
+            <h3>inactivated object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#inactivatedObject</p>
+            <div class="comment">
+               <p>The rmap:DiSCO inactivated as a result of an rmap:Event. Two kinds of Events result in an inactivatedObject property: (1) an inactivation Event marks a DiSCO as inactive, meaning the data can still be accessed through public interfaces, but it may not be accurate or up to date. (2) an update Event is initiated against a DiSCO by the original Agent that created the DiSCO. The target version becomes inactive (the inactivatedObject) and the new version is the derivedObject.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e158" class="entity">
+            <a name="http://purl.org/ontology/rmap#lineageProgenitor"></a>
+            <h3>lineage progenitor<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#lineageProgenitor</p>
+            <div class="comment">
+               <p>The rmap:lineageProgenitor property references the first rmap:DiSCO or rmap:Agent URI in a lineage. If, for example, a DiSCO is created, updated, updated again, then tombstoned, 3 different DiSCO URIs will exist in the object's lineage (one for each update) and 4 rmap:Events. The rmap:lineageProgenitor of the Event will always contain the URI of the original DiSCO created. This can be used to support the retrieval of related Events and versions.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e172" class="entity">
+            <a name="http://purl.org/ontology/rmap#providerId"></a>
+            <h3>provider id<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#providerId</p>
+            <div class="comment">
+               <p>Most of the time, an rmap:DiSCO will be created using a blank node. If a new DiSCO comes into RMap but already has an identifier associated with it, this will become the providerID - the ID provided by the rmap:Agent on creation of a new DiSCO.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e433" title="http://www.w3.org/2000/01/rdf-schema#Resource">resource</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e184" class="entity">
+            <a name="http://purl.org/ontology/rmap#tombstonedObject"></a>
+            <h3>tombstoned object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#tombstonedObject</p>
+            <div class="comment">
+               <p>The rmap:DiSCO that was tombstoned as a result of the rmap:Event. A tombstoned DiSCO is soft deleted in that the data stays in the database, but only Events related to the DiSCO are still visible through public interfaces.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e197" class="entity">
+            <a name="http://purl.org/ontology/rmap#updatedObject"></a>
+            <h3>updated object<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#updatedObject</p>
+            <div class="comment">
+               <p>The rmap:Agent updated during a replace Event. An Agent is mutable, so when it is updated, the Agent URI remains the same but the data is replaced. The updatedObject indicates which Agent was updated, but no new Agent object is generated in this type of Event.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e244" class="entity">
+            <a name="http://www.w3.org/ns/prov#used"></a>
+            <h3>used<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#used</p>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e433" title="http://www.w3.org/2000/01/rdf-schema#Resource">resource</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e209" class="entity">
+            <a name="http://purl.org/ontology/rmap#userAuthId"></a>
+            <h3>user auth id<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#userAuthId</p>
+            <div class="comment">
+               <p>A calculated identifier that relates to the user's authorization path. This can be used to support individual verification that a person is the Agent they claim to be without publicly displaying e.g. email information. For example, in the RMap system, this contains a URI constructed from the SHA256 encoding of the identityProvider+accountId e.g. <a href="http://orcid.org/">http://orcid.org</a> + {orcidid}. Since minimal information is captured in an rmap:Agent, and oauth users can enter any name they like, this provides a method to individually verify an Agent's identity by confirming this field matches their account information.</p>
+            </div>
+         </div>
+         <div id="d4e253" class="entity">
+            <a name="http://www.w3.org/ns/prov#wasAssociatedWith"></a>
+            <h3>was associated with<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#wasAssociatedWith</p>
+            <div class="comment">
+               <p>The rmap:Agent that initated the rmap:Event</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e266" class="entity">
+            <a name="http://www.w3.org/ns/prov#wasGeneratedBy"></a>
+            <h3>was generated by<sup title="object property" class="type-op">op</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#wasGeneratedBy</p>
+            <div class="comment">
+               <p>A dcterms:Agent or process that generated the rmap:DiSCO. This can support assertions about a specific harvesting process relevant to the DiSCO. For example, a harvester could supply some metadata about the harvest process conditions in a new DiSCO and then reference that process in the wasGeneratedBy field in other DiSCOs.</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+      </div>
+      <div id="dataproperties">
+         <h2>Data Properties</h2>
+         <ul class="hlist">
+            <li><a href="#d4e280" title="http://purl.org/dc/terms/description"><span>description</span></a></li>
+            <li><a href="#d4e294" title="http://www.w3.org/ns/prov#endedAtTime"><span>ended at time</span></a></li>
+            <li><a href="#d4e319" title="http://xmlns.com/foaf/0.1/name"><span>name</span></a></li>
+            <li><a href="#d4e307" title="http://www.w3.org/ns/prov#startedAtTime"><span>started at time</span></a></li>
+         </ul>
+         <div id="d4e280" class="entity">
+            <a name="http://purl.org/dc/terms/description"></a>
+            <h3>description<sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/dc/terms/description</p>
+            <div class="comment">
+               <p>Text description of the DiSCO contents or Event details</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e363" title="http://purl.org/ontology/rmap#DiSCO">DiSCO</a><sup title="class" class="type-c">c</sup></dd>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><span class="dotted" title="http://www.w3.org/2000/01/rdf-schema#Literal">literal</span></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e294" class="entity">
+            <a name="http://www.w3.org/ns/prov#endedAtTime"></a>
+            <h3>ended at time<sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#endedAtTime</p>
+            <div class="comment">
+               <p>Time that the rmap:Event ended</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">date time</span></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e319" class="entity">
+            <a name="http://xmlns.com/foaf/0.1/name"></a>
+            <h3>name<sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://xmlns.com/foaf/0.1/name</p>
+            <div class="comment">
+               <p>Name of rmap:Agent</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e353" title="http://purl.org/ontology/rmap#Agent">agent</a><sup title="class" class="type-c">c</sup></dd>
+               </dl>
+            </div>
+         </div>
+         <div id="d4e307" class="entity">
+            <a name="http://www.w3.org/ns/prov#startedAtTime"></a>
+            <h3>started at time<sup title="data property" class="type-dp">dp</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://www.w3.org/ns/prov#startedAtTime</p>
+            <div class="comment">
+               <p>Time that the rmap:Event started</p>
+            </div>
+            <div class="description">
+               <dl>
+                  <dt>has domain</dt>
+                  <dd><a href="#d4e376" title="http://purl.org/ontology/rmap#Event">event</a><sup title="class" class="type-c">c</sup></dd>
+                  <dt>has range</dt>
+                  <dd><span class="dotted" title="http://www.w3.org/2001/XMLSchema#dateTime">date time</span></dd>
+               </dl>
+            </div>
+         </div>
+      </div>
+      <div id="namedindividuals">
+         <h2>Named Individuals</h2>
+         <ul class="hlist">
+            <li><a href="#d4e478" title="http://purl.org/ontology/rmap#active"><span>active</span></a></li>
+            <li><a href="#d4e457" title="http://purl.org/ontology/rmap#Agent"><span>agent</span></a></li>
+            <li><a href="#d4e488" title="http://purl.org/ontology/rmap#creation"><span>creation</span></a></li>
+            <li><a href="#d4e499" title="http://purl.org/ontology/rmap#deleted"><span>deleted</span></a></li>
+            <li><a href="#d4e509" title="http://purl.org/ontology/rmap#deletion"><span>deletion</span></a></li>
+            <li><a href="#d4e519" title="http://purl.org/ontology/rmap#derivation"><span>derivation</span></a></li>
+            <li><a href="#d4e468" title="http://purl.org/ontology/rmap#DiSCO"><span>DiSCO</span></a></li>
+            <li><a href="#d4e530" title="http://purl.org/ontology/rmap#inactivation"><span>inactivation</span></a></li>
+            <li><a href="#d4e540" title="http://purl.org/ontology/rmap#inactive"><span>inactive</span></a></li>
+            <li><a href="#d4e550" title="http://purl.org/ontology/rmap#replace"><span>replace</span></a></li>
+            <li><a href="#d4e561" title="http://purl.org/ontology/rmap#tombstone"><span>tombstone</span></a></li>
+            <li><a href="#d4e571" title="http://purl.org/ontology/rmap#tombstoned"><span>tombstoned</span></a></li>
+            <li><a href="#d4e581" title="http://purl.org/ontology/rmap#update"><span>update</span></a></li>
+         </ul>
+         <div id="d4e478" class="entity">
+            <a name="http://purl.org/ontology/rmap#active"></a>
+            <h3>active<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#active</p>
+            <div class="comment">
+               <p>A Status indicating that the assertions content of the DiSCO or Agent are assumed to be true and have not been withdrawn by the data creator.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e413" title="http://purl.org/ontology/rmap#Status">status</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e457" class="entity">
+            <a name="http://purl.org/ontology/rmap#Agent"></a>
+            <h3>agent<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#Agent</p>
+            <div class="comment">
+               <p>rmap:Agents can make changes to the RMap database. The rmap:Agent's URI is associated with each change they make on the database throught the rmap:Event.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e388" title="http://purl.org/ontology/rmap#EventTargetType">event target type</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>is also defined as</dt>
+               <dd><a href="#d4e353">class</a></dd>
+            </dl>
+         </div>
+         <div id="d4e488" class="entity">
+            <a name="http://purl.org/ontology/rmap#creation"></a>
+            <h3>creation<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#creation</p>
+            <div class="comment">
+               <p>An rmap:Event in which a new DiSCO or Agent has been created</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e499" class="entity">
+            <a name="http://purl.org/ontology/rmap#deleted"></a>
+            <h3>deleted<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#deleted</p>
+            <div class="comment">
+               <p>A Status indicating that a DiSCO has been removed permanently from the database. Only its rmap:Events remain.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e413" title="http://purl.org/ontology/rmap#Status">status</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e509" class="entity">
+            <a name="http://purl.org/ontology/rmap#deletion"></a>
+            <h3>deletion<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#deletion</p>
+            <div class="comment">
+               <p>An rmap:Event in which a DiSCO is deleted from the databse, only the related rmap:Events remain.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e519" class="entity">
+            <a name="http://purl.org/ontology/rmap#derivation"></a>
+            <h3>derivation<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#derivation</p>
+            <div class="comment">
+               <p>An Event in which and updated version of a DiSCO has been asserted by an Agent other than the original creating Agent. The original DiSCO is active, but a new version is now linked.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e468" class="entity">
+            <a name="http://purl.org/ontology/rmap#DiSCO"></a>
+            <h3>DiSCO<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#DiSCO</p>
+            <div class="comment">
+               <p>rmap:DiSCO represents a Distributed Scholarly Compound Object. It is inspired by an ore:Aggregation, but is simplified. A DiSCO describes an aggregation of related resources plus additional information about the contents of the aggregation.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e388" title="http://purl.org/ontology/rmap#EventTargetType">event target type</a><sup title="class" class="type-c">c</sup></dd>
+               <dt>is also defined as</dt>
+               <dd><a href="#d4e363">class</a></dd>
+            </dl>
+         </div>
+         <div id="d4e530" class="entity">
+            <a name="http://purl.org/ontology/rmap#inactivation"></a>
+            <h3>inactivation<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#inactivation</p>
+            <div class="comment">
+               <p>An rmap:Event in which a DiSCO is inactivated and a new version is not provided.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e540" class="entity">
+            <a name="http://purl.org/ontology/rmap#inactive"></a>
+            <h3>inactive<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#inactive</p>
+            <div class="comment">
+               <p>A Status indicating that he Agent that created the DiSCO has withdrawn or updated them. Assertions in an inactive DiSCO may be untrue or out of date.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e413" title="http://purl.org/ontology/rmap#Status">status</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e550" class="entity">
+            <a name="http://purl.org/ontology/rmap#replace"></a>
+            <h3>replace<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#replace</p>
+            <div class="comment">
+               <p>An rmap:Event in which an rmap:Agent has been updated - the original version has been replaced but the ID for the Agent remains the same. Note that Agents are mutable, but DiSCOs are not.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e561" class="entity">
+            <a name="http://purl.org/ontology/rmap#tombstone"></a>
+            <h3>tombstone<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#tombstone</p>
+            <div class="comment">
+               <p>An rmap:Event in which a DiSCO has been tombstoned. This is a soft delete in which the DiSCO should no longer be visible via the user interfaces, but the data will remain in the database.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e571" class="entity">
+            <a name="http://purl.org/ontology/rmap#tombstoned"></a>
+            <h3>tombstoned<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#tombstoned</p>
+            <div class="comment">
+               <p>A Status indicating that a DiSCO has been soft deleted, meaning that public users cannot access the data, but it is still visible by accessing the database directly. The rmap:Events relating to the DiSCO still exist and are visible.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e413" title="http://purl.org/ontology/rmap#Status">status</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+         <div id="d4e581" class="entity">
+            <a name="http://purl.org/ontology/rmap#update"></a>
+            <h3>update<sup title="named individual" class="type-ni">ni</sup><span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a></span></h3>
+            <p><strong>IRI:</strong> http://purl.org/ontology/rmap#update</p>
+            <div class="comment">
+               <p>An Event in which a DiSCO is been updated by the same Agent that created it. in this instance, the previous version is inactivated, a new one is created.</p>
+            </div>
+            <dl class="description">
+               <dt>belongs to</dt>
+               <dd><a href="#d4e396" title="http://purl.org/ontology/rmap#EventType">event type</a><sup title="class" class="type-c">c</sup></dd>
+            </dl>
+         </div>
+      </div>
+      <div id="namespacedeclarations">
+         <h2>Namespace Declarations <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+         <dl>
+            <dt><em>default namespace</em></dt>
+            <dd>http://purl.org/ontology/rmap#</dd>
+            <dt>foaf</dt>
+            <dd>http://xmlns.com/foaf/0.1/</dd>
+            <dt>dc</dt>
+            <dd>http://purl.org/dc/terms/</dd>
+            <dt>owl</dt>
+            <dd>http://www.w3.org/2002/07/owl#</dd>
+            <dt>prov</dt>
+            <dd>http://www.w3.org/ns/prov#</dd>
+            <dt>rdf</dt>
+            <dd>http://www.w3.org/1999/02/22-rdf-syntax-ns#</dd>
+            <dt>rdfs</dt>
+            <dd>http://www.w3.org/2000/01/rdf-schema#</dd>
+            <dt>terms</dt>
+            <dd>http://www.openarchives.org/ore/terms/</dd>
+            <dt>xsd</dt>
+            <dd>http://www.w3.org/2001/XMLSchema#</dd>
+         </dl>
+      </div>
+      <div id="references">
+        <h2>References</h2>
+        <span>
+          RMap website <a href="http://rmap-project.info/">http://rmap-project.info/</a> <br/>
+          RMap technical documentation  <a href="https://rmap-project.atlassian.net">https://rmap-project.atlassian.net</a> <br/>
+	        OAI-ORE <a href="https://www.openarchives.org/ore/">https://www.openarchives.org/ore/</a>
+        </span>
+      </div>
+      <div id="acknowledgements">
+        <h2>Acknowledgements</h2>
+        <span>RMap work was funded by the Alfred P. Sloan Foundation and carried
+          out as a collaboration between Johns Hopkins’ Data Conservancy,
+          Portico and IEEE.</span>
+      </div>
+      <p class="endnote">This HTML document was obtained by processing the OWL ontology source code through <a href="http://www.essepuntato.it/lode">LODE</a>, <em>Live OWL Documentation Environment</em>, developed by <a href="http://www.essepuntato.it/">Silvio Peroni</a>.</p>
+      <span style="border-radius: 3px; text-indent: 20px; width: auto; padding: 0px 4px 0px 0px; text-align: center; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 11px; line-height: 20px; font-family: &quot;Helvetica Neue&quot;, Helvetica, sans-serif; color: rgb(255, 255, 255); background: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzBweCIgd2lkdGg9IjMwcHgiIHZpZXdCb3g9Ii0xIC0xIDMxIDMxIj48Zz48cGF0aCBkPSJNMjkuNDQ5LDE0LjY2MiBDMjkuNDQ5LDIyLjcyMiAyMi44NjgsMjkuMjU2IDE0Ljc1LDI5LjI1NiBDNi42MzIsMjkuMjU2IDAuMDUxLDIyLjcyMiAwLjA1MSwxNC42NjIgQzAuMDUxLDYuNjAxIDYuNjMyLDAuMDY3IDE0Ljc1LDAuMDY3IEMyMi44NjgsMC4wNjcgMjkuNDQ5LDYuNjAxIDI5LjQ0OSwxNC42NjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+PHBhdGggZD0iTTE0LjczMywxLjY4NiBDNy41MTYsMS42ODYgMS42NjUsNy40OTUgMS42NjUsMTQuNjYyIEMxLjY2NSwyMC4xNTkgNS4xMDksMjQuODU0IDkuOTcsMjYuNzQ0IEM5Ljg1NiwyNS43MTggOS43NTMsMjQuMTQzIDEwLjAxNiwyMy4wMjIgQzEwLjI1MywyMi4wMSAxMS41NDgsMTYuNTcyIDExLjU0OCwxNi41NzIgQzExLjU0OCwxNi41NzIgMTEuMTU3LDE1Ljc5NSAxMS4xNTcsMTQuNjQ2IEMxMS4xNTcsMTIuODQyIDEyLjIxMSwxMS40OTUgMTMuNTIyLDExLjQ5NSBDMTQuNjM3LDExLjQ5NSAxNS4xNzUsMTIuMzI2IDE1LjE3NSwxMy4zMjMgQzE1LjE3NSwxNC40MzYgMTQuNDYyLDE2LjEgMTQuMDkzLDE3LjY0MyBDMTMuNzg1LDE4LjkzNSAxNC43NDUsMTkuOTg4IDE2LjAyOCwxOS45ODggQzE4LjM1MSwxOS45ODggMjAuMTM2LDE3LjU1NiAyMC4xMzYsMTQuMDQ2IEMyMC4xMzYsMTAuOTM5IDE3Ljg4OCw4Ljc2NyAxNC42NzgsOC43NjcgQzEwLjk1OSw4Ljc2NyA4Ljc3NywxMS41MzYgOC43NzcsMTQuMzk4IEM4Ljc3NywxNS41MTMgOS4yMSwxNi43MDkgOS43NDksMTcuMzU5IEM5Ljg1NiwxNy40ODggOS44NzIsMTcuNiA5Ljg0LDE3LjczMSBDOS43NDEsMTguMTQxIDkuNTIsMTkuMDIzIDkuNDc3LDE5LjIwMyBDOS40MiwxOS40NCA5LjI4OCwxOS40OTEgOS4wNCwxOS4zNzYgQzcuNDA4LDE4LjYyMiA2LjM4NywxNi4yNTIgNi4zODcsMTQuMzQ5IEM2LjM4NywxMC4yNTYgOS4zODMsNi40OTcgMTUuMDIyLDYuNDk3IEMxOS41NTUsNi40OTcgMjMuMDc4LDkuNzA1IDIzLjA3OCwxMy45OTEgQzIzLjA3OCwxOC40NjMgMjAuMjM5LDIyLjA2MiAxNi4yOTcsMjIuMDYyIEMxNC45NzMsMjIuMDYyIDEzLjcyOCwyMS4zNzkgMTMuMzAyLDIwLjU3MiBDMTMuMzAyLDIwLjU3MiAxMi42NDcsMjMuMDUgMTIuNDg4LDIzLjY1NyBDMTIuMTkzLDI0Ljc4NCAxMS4zOTYsMjYuMTk2IDEwLjg2MywyNy4wNTggQzEyLjA4NiwyNy40MzQgMTMuMzg2LDI3LjYzNyAxNC43MzMsMjcuNjM3IEMyMS45NSwyNy42MzcgMjcuODAxLDIxLjgyOCAyNy44MDEsMTQuNjYyIEMyNy44MDEsNy40OTUgMjEuOTUsMS42ODYgMTQuNzMzLDEuNjg2IiBmaWxsPSIjYmQwODFjIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;) 3px 50% / 14px 14px no-repeat rgb(189, 8, 28); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; -webkit-font-smoothing: antialiased;">Save</span><span style="width: 24px; height: 24px; background: url(&quot;data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxtYXNrIGlkPSJtIj48cmVjdCBmaWxsPSIjZmZmIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiByeT0iNiIvPjxyZWN0IGZpbGw9IiMwMDAiIHg9IjUiIHk9IjUiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgcng9IjEiIHJ5PSIxIi8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMTAiIHk9IjAiIHdpZHRoPSI0IiBoZWlnaHQ9IjI0Ii8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMCIgeT0iMTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0Ii8+PC9tYXNrPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNmZmYiIG1hc2s9InVybCgjbSkiLz48L3N2Zz4=&quot;) 50% 50% / 14px 14px no-repeat rgba(0, 0, 0, 0.4); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; border-radius: 12px;"></span>
+   </body>
+</html>
