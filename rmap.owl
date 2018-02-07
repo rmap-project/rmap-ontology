@@ -5,14 +5,41 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://purl.org/ontology/rmap#">
         <owl:versionIRI rdf:resource="http://purl.org/ontology/rmap/1.0#"/>
+        <dc:title>RMap ontology</dc:title>
+        <dc:date>2017-09-12</dc:date>
+        <dc:creator>Karen Hanson, Sheila Morrissey</dc:creator>
+        <dc:contributor>Aaron Birkland, Tim DiLauro, Mark Donaghue
+          </dc:contributor>
+        <dc:rights>This work is distributed under Creative Commons Attribution
+          License (http://creativecommons.org/licenses/by/3.0)</dc:rights>
+        <rdfs:comment>The RMap ontology supports the description of a
+          distributed scholarly work.  Maps of works are described in the form
+          of an rmap:DiSCO  - a simple, lightweight version of an OAI-ORE
+          Aggregation - with provenance information captured in an RMap Event,
+          and DiSCO creators described as RMap Agents.</rdfs:comment>
+        <dc:description>Today's scholarly works can be dynamic, distributed,
+          and complex. They can consist of multiple related components (article,
+          dataset, software, multimedia, webpage, etc.) that are made
+          available asynchronously, assigned a range of identifiers, and
+          stored in different repositories with uneven preservation policies.
+          The RMap ontology supports the description of the components of
+          distributed works and, optionally, the context around it.  The core
+          of the RMap model is the RMap DiSCO (Distributed Scholarly Compound
+          Object), which draws on concepts from OAI-ORE to provide a
+          lightweight Aggregation object that describes distributed scholarly
+          works.  To capture provenance of DiSCOs, there is a simple Event
+          model.  Agents generate Events and can act upon both Agents and
+          DiSCOs.  The RMap ontology drives the RMap system
+          (https://rmap-hub.org).</dc:description>
     </owl:Ontology>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Annotation properties
@@ -20,7 +47,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.w3.org/2002/07/owl#versionInfo -->
@@ -28,10 +55,10 @@
     <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#versionInfo">
         <owl:versionInfo>http://purl.org/ontology/rmap/1.0#</owl:versionInfo>
     </rdf:Description>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Object Properties
@@ -39,7 +66,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://purl.org/dc/terms/creator -->
@@ -47,9 +74,9 @@
     <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/creator">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
         <rdfs:range rdf:resource="http://purl.org/dc/terms/Agent"/>
-        <rdfs:comment>A dcterms:Agent responsible for creating this DiSCO.  This is a user assertion that is displayed as part of the DiSCO.  This is separate from the rmap:Agent URI captured as part of the DiSCO provenance.</rdfs:comment>
+        <rdfs:comment>A dcterms:Agent responsible for creating this DiSCO. This is a user assertion that is displayed as part of the DiSCO. This is separate from the rmap:Agent URI captured as part of the DiSCO provenance.</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#deletedObject -->
@@ -57,9 +84,9 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#deletedObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>The rmap:DiSCO deleted as a result of the rmap:Event.  Note that a deletion represents a hard delete of the DiSCO in which the statements are removed.  All that will remain after a deletion is the Events that describe the creation and deletion of the DiSCO.</rdfs:comment>
+        <rdfs:comment>The rmap:DiSCO deleted as a result of the rmap:Event. Note that a deletion represents a hard delete of the DiSCO in which the statements are removed. All that will remain after a deletion is the Events that describe the creation and deletion of the DiSCO.</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#derivedObject -->
@@ -67,9 +94,11 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#derivedObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>The rmap:DiSCO that was derived as a result of an update or derivation event against a DiSCO.  DiSCOs are immutable, so when a DiSCO is updated, an Event indicates the location of the previous version as well as the new DiSCO that was derived from it (the derivedObject).  A derivedObject can be generated under two Event types: (1) an update DiSCO Event  occurs when the update is performed by the same rmap:Agent that created the original DiSCO, the previous version is inactivated (include inactivatedObject in the Event) and the new version is the derivedObject. (2)  A derivation Event type occurs when an Agent that did not originally create a DiSCO generates a new version of it. In this instance the previous version stays the same as it was and the URI of that should be indicated using hasSourceObject. The new DiSCO is the derivedObject.</rdfs:comment>
+        <rdfs:comment>
+The rmap:DiSCO that was derived as a result of an update or derivation event against a DiSCO. DiSCOs are immutable, so when a DiSCO is updated, an Event indicates the location of the previous version as well as the new DiSCO that was derived from it (the derivedObject). A derivedObject can be generated under two Event types: (1) an update DiSCO Event occurs when the update is performed by the same rmap:Agent that created the original DiSCO, the previous version is inactivated (include inactivatedObject in the Event) and the new version is the derivedObject. (2) A derivation Event type occurs when an Agent that did not originally create a DiSCO generates a new version of it. In this instance the previous version stays the same as it was and the URI of that should be indicated using hasSourceObject. The new DiSCO is the derivedObject.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#eventTargetType -->
@@ -79,7 +108,7 @@
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#EventTargetType"/>
         <rdfs:comment>Type of object targeted by the rmap:Event</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#eventType -->
@@ -89,7 +118,7 @@
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#EventType"/>
         <rdfs:comment>The type of rmap:Event</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#hasSourceObject -->
@@ -97,9 +126,11 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#hasSourceObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>For a derivation event, the hasSourceObject property represents the URI of the original DiSCO.  hasSourceObject is used when an rmap:Agent creates a version of DiSCO that they did not originally create.  It is used in conjunction with derivedObject, which represents the new version of the original object as asserted by this other Agent.</rdfs:comment>
+        <rdfs:comment>
+For a derivation event, the hasSourceObject property represents the URI of the original DiSCO. hasSourceObject is used when an rmap:Agent creates a version of DiSCO that they did not originally create. It is used in conjunction with derivedObject, which represents the new version of the original object as asserted by this other Agent.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#hasStatus -->
@@ -108,19 +139,23 @@
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Agent"/>
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Status"/>
-        <rdfs:comment>The status of the DiSCO or Agent, can be determined by examining Events associated with it.</rdfs:comment>
+        <rdfs:comment>
+The status of the DiSCO or Agent, can be determined by examining Events associated with it.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#identityProvider -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#identityProvider">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Agent"/>
-        <rdfs:range rdf:resource="https://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdfs:comment>The identity provider that was used to authenticate the rmap:Agent.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <rdfs:comment>
+The identity provider that was used to authenticate the rmap:Agent.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#inactivatedObject -->
@@ -128,19 +163,36 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#inactivatedObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>The rmap:DiSCO inactivated as a result of an rmap:Event. Two kinds of Events result in an inactivatedObject property: (1) an inactivation Event marks a DiSCO as inactive, meaning the data can still be accessed through public interfaces, but it may not be accurate or up to date. (2) an update Event is initiated against a DiSCO by the original Agent that created the DiSCO. The target version becomes inactive (the inactivatedObject) and the new version is the derivedObject.</rdfs:comment>
+        <rdfs:comment>
+The rmap:DiSCO inactivated as a result of an rmap:Event. Two kinds of Events result in an inactivatedObject property: (1) an inactivation Event marks a DiSCO as inactive, meaning the data can still be accessed through public interfaces, but it may not be accurate or up to date. (2) an update Event is initiated against a DiSCO by the original Agent that created the DiSCO. The target version becomes inactive (the inactivatedObject) and the new version is the derivedObject.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
+
+
+    <!-- http://purl.org/ontology/rmap#lineageProgenitor -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#lineageProgenitor">
+        <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
+        <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Agent"/>
+        <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
+        <rdfs:comment>
+The rmap:lineageProgenitor property references the first rmap:DiSCO or rmap:Agent URI in a lineage. If, for example, a DiSCO is created, updated, updated again, then tombstoned, 3 different DiSCO URIs will exist in the object&apos;s lineage (one for each update) and 4 rmap:Events. The rmap:lineageProgenitor of the Event will always contain the URI of the original DiSCO created. This can be used to support the retrieval of related Events and versions.
+</rdfs:comment>
+    </owl:ObjectProperty>
+
 
 
     <!-- http://purl.org/ontology/rmap#providerId -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#providerId">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:range rdf:resource="https://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdfs:comment>Most of the time, an rmap:DiSCO will be created using a blank node.  If a new DiSCO comes into RMap but already has an identifier associated with it, this will become the providerID - the ID provided by the rmap:Agent on creation of a new DiSCO.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <rdfs:comment>
+Most of the time, an rmap:DiSCO will be created using a blank node. If a new DiSCO comes into RMap but already has an identifier associated with it, this will become the providerID - the ID provided by the rmap:Agent on creation of a new DiSCO.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#tombstonedObject -->
@@ -148,9 +200,11 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#tombstonedObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>The rmap:DiSCO that was tombstoned as a result of the rmap:Event.  A tombstoned DiSCO is soft deleted in that the data stays in the database, but only Events related to the DiSCO are still visible through public interfaces.</rdfs:comment>
+        <rdfs:comment>
+The rmap:DiSCO that was tombstoned as a result of the rmap:Event. A tombstoned DiSCO is soft deleted in that the data stays in the database, but only Events related to the DiSCO are still visible through public interfaces.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#updatedObject -->
@@ -158,27 +212,33 @@
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#updatedObject">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Agent"/>
-        <rdfs:comment>The rmap:Agent updated during a replace Event.  An Agent is mutable, so when it is updated, the Agent URI remains the same but the data is replaced.  The updatedObject indicates which Agent was updated, but no new Agent object is generated in this type of Event.</rdfs:comment>
+        <rdfs:comment>
+The rmap:Agent updated during a replace Event. An Agent is mutable, so when it is updated, the Agent URI remains the same but the data is replaced. The updatedObject indicates which Agent was updated, but no new Agent object is generated in this type of Event.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#userAuthId -->
 
     <owl:ObjectProperty rdf:about="http://purl.org/ontology/rmap#userAuthId">
-        <rdfs:comment>A calculated identifier that relates to the user&apos;s authorization path.  This can be used to support individual verification that a person is the Agent they claim to be without publicly displaying e.g. email information.  For example, in the RMap system, this contains a URI constructed from the SHA256 encoding of the identityProvider+accountId e.g. http://orcid.org + {orcidid}.  Since minimal information is captured in an rmap:Agent, and oauth users can enter any name they like, this provides a method to individually verify an Agent&apos;s identity by confirming this field matches their account information.</rdfs:comment>
+        <rdfs:comment>
+A calculated identifier that relates to the user&apos;s authorization path. This can be used to support individual verification that a person is the Agent they claim to be without publicly displaying e.g. email information. For example, in the RMap system, this contains a URI constructed from the SHA256 encoding of the identityProvider+accountId e.g. http://orcid.org + {orcidid}. Since minimal information is captured in an rmap:Agent, and oauth users can enter any name they like, this provides a method to individually verify an Agent&apos;s identity by confirming this field matches their account information.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.openarchives.org/ore/terms/aggregates -->
 
     <owl:ObjectProperty rdf:about="http://www.openarchives.org/ore/terms/aggregates">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:range rdf:resource="https://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdfs:comment>One or more rdfs:Resource can be aggregated by an rmap:DiSCO.  The aggregated resources represent components of a scholarly object that are related to each other to form a compound representation of a work. A component can, for example, be a person, organization, dataset, webpage, article, sample, code, or anything else related to a scholarly work.   Ideally, additional statements will be added to describe the components and their relationship to one another, but this is not a requirement.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <rdfs:comment>
+One or more rdfs:Resource can be aggregated by an rmap:DiSCO. The aggregated resources represent components of a scholarly object that are related to each other to form a compound representation of a work. A component can, for example, be a person, organization, dataset, webpage, article, sample, code, or anything else related to a scholarly work. Ideally, additional statements will be added to describe the components and their relationship to one another, but this is not a requirement.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#generated -->
@@ -187,18 +247,20 @@
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Agent"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:comment>The rmap:DiSCO or rmap:Agent generated by the rmap:Event. This is used for creation Events, but can also be used in addition to rmap:derivedObject so that all Events that create a new object include a prov:generated property.</rdfs:comment>
+        <rdfs:comment>
+The rmap:DiSCO or rmap:Agent generated by the rmap:Event. This is used for creation Events, but can also be used in addition to rmap:derivedObject so that all Events that create a new object include a prov:generated property.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#used -->
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#used">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
-        <rdfs:range rdf:resource="https://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#wasAssociatedWith -->
@@ -208,7 +270,7 @@
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Agent"/>
         <rdfs:comment>The rmap:Agent that initated the rmap:Event</rdfs:comment>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#wasGeneratedBy -->
@@ -216,12 +278,14 @@
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasGeneratedBy">
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
         <rdfs:range rdf:resource="http://purl.org/ontology/rmap#Event"/>
-        <rdfs:comment>A dcterms:Agent or process that generated the rmap:DiSCO.  This can support assertions about a specific harvesting process relevant to the DiSCO. For example, a harvester could supply some metadata about the harvest process conditions in a new DiSCO and then reference that process in the wasGeneratedBy field in other DiSCOs.</rdfs:comment>
+        <rdfs:comment>
+A dcterms:Agent or process that generated the rmap:DiSCO. This can support assertions about a specific harvesting process relevant to the DiSCO. For example, a harvester could supply some metadata about the harvest process conditions in a new DiSCO and then reference that process in the wasGeneratedBy field in other DiSCOs.
+</rdfs:comment>
     </owl:ObjectProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Data properties
@@ -229,7 +293,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://purl.org/dc/terms/description -->
@@ -238,9 +302,11 @@
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#DiSCO"/>
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Event"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-        <rdfs:comment>Text description of the DiSCO contents or Event details</rdfs:comment>
+        <rdfs:comment>
+Text description of the DiSCO contents or Event details
+</rdfs:comment>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#endedAtTime -->
@@ -250,7 +316,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <rdfs:comment>Time that the rmap:Event ended</rdfs:comment>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.w3.org/ns/prov#startedAtTime -->
@@ -260,7 +326,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
         <rdfs:comment>Time that the rmap:Event started</rdfs:comment>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://xmlns.com/foaf/0.1/name -->
@@ -269,10 +335,10 @@
         <rdfs:domain rdf:resource="http://purl.org/ontology/rmap#Agent"/>
         <rdfs:comment>Name of rmap:Agent</rdfs:comment>
     </owl:DatatypeProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Classes
@@ -280,33 +346,37 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://purl.org/dc/terms/Agent -->
 
     <owl:Class rdf:about="http://purl.org/dc/terms/Agent">
-        <rdfs:comment>A resource that acts or has the power to act. See 	http://purl.org/dc/terms/Agent</rdfs:comment>
+        <rdfs:comment>
+A resource that acts or has the power to act. See http://purl.org/dc/terms/Agent
+</rdfs:comment>
         <rdfs:seeAlso>http://purl.org/dc/terms/Agent</rdfs:seeAlso>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#Administrator -->
 
     <owl:Class rdf:about="http://purl.org/ontology/rmap#Administrator">
         <rdfs:subClassOf rdf:resource="http://purl.org/ontology/rmap#Agent"/>
-        <rdfs:comment>RMap Administrators are a specific type of RMap Agent with privileges to Administer an RMap system.</rdfs:comment>
+        <rdfs:comment>RMap Administrators are a specific type of RMap Agent with privileges to Administer an RMap system.
+		</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#Agent -->
 
     <owl:Class rdf:about="http://purl.org/ontology/rmap#Agent">
         <rdfs:subClassOf rdf:resource="http://purl.org/ontology/rmap#Object"/>
+		<rdfs:comment>rmap:Agents can make changes to the RMap database. The rmap:Agent&apos;s URI is associated with each change they make on the database throught the rmap:Event.</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#DiSCO -->
@@ -314,26 +384,29 @@
     <owl:Class rdf:about="http://purl.org/ontology/rmap#DiSCO">
         <rdfs:subClassOf rdf:resource="http://purl.org/ontology/rmap#Object"/>
         <rdfs:subClassOf rdf:resource="http://www.openarchives.org/ore/terms/Aggregation"/>
+		<rdfs:comment>rmap:DiSCO represents a Distributed Scholarly Compound Object. It is inspired by an ore:Aggregation, but is simplified. A DiSCO describes an aggregation of related resources plus additional information about the contents of the aggregation.</rdfs:comment>
     </owl:Class>
-    
-
 
     <!-- http://purl.org/ontology/rmap#Event -->
 
     <owl:Class rdf:about="http://purl.org/ontology/rmap#Event">
         <owl:equivalentClass rdf:resource="http://www.w3.org/ns/prov#Activity"/>
         <rdfs:subClassOf rdf:resource="http://purl.org/ontology/rmap#Object"/>
-        <rdfs:comment>rmap:Events track provenance and status for each rmap:DiSCO and rmap:Agent in the RMap database.</rdfs:comment>
+        <rdfs:comment>
+rmap:Events track provenance and status for each rmap:DiSCO and rmap:Agent in the RMap database.
+</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#EventTargetType -->
 
     <owl:Class rdf:about="http://purl.org/ontology/rmap#EventTargetType">
-        <rdfs:comment>Class of the object that is affected by the event. Should be either http://purl.org/ontology/rmap#DiSCO or http://purl.org/ontology/rmap#Agent</rdfs:comment>
+        <rdfs:comment>
+Class of the object that is affected by the event. Should be either http://purl.org/ontology/rmap#DiSCO or http://purl.org/ontology/rmap#Agent
+</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#EventType -->
@@ -341,7 +414,7 @@
     <owl:Class rdf:about="http://purl.org/ontology/rmap#EventType">
         <rdfs:comment>Type of rmap:Event performed.</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#Object -->
@@ -349,45 +422,55 @@
     <owl:Class rdf:about="http://purl.org/ontology/rmap#Object">
         <rdfs:comment>Parent class of the core objects found in RMap.</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#Status -->
 
     <owl:Class rdf:about="http://purl.org/ontology/rmap#Status">
-        <rdfs:comment>Status is documented as part of an event.  An event changes the status of a DiSCO or Agent.  It is recorded using one of the options in Status.</rdfs:comment>
+        <rdfs:comment>
+Status is documented as part of an event. An event changes the status of a DiSCO or Agent. It is recorded using one of the options in Status.
+</rdfs:comment>
     </owl:Class>
-    
+
 
 
     <!-- http://www.openarchives.org/ore/terms/Aggregation -->
 
     <owl:Class rdf:about="http://www.openarchives.org/ore/terms/Aggregation">
-        <rdfs:comment>An Aggregation is a Resource of type ore:Aggregation that is a set of other Resources. The type ore:Aggregation is associated with a Resource via an assertion by at least one Resource Map.See http://www.openarchives.org/ore/1.0/datamodel#Aggregation</rdfs:comment>
-        <rdfs:seeAlso>http://www.openarchives.org/ore/1.0/datamodel#Aggregation</rdfs:seeAlso>
+        <rdfs:comment>
+An Aggregation is a Resource of type ore:Aggregation that is a set of other Resources. The type ore:Aggregation is associated with a Resource via an assertion by at least one Resource Map.See http://www.openarchives.org/ore/1.0/datamodel#Aggregation
+</rdfs:comment>
+        <rdfs:seeAlso>
+http://www.openarchives.org/ore/1.0/datamodel#Aggregation
+</rdfs:seeAlso>
     </owl:Class>
-    
+
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Resource -->
+
+    <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource">
+        <rdfs:comment>
+All things described by RDF are resources and are instances of the class rdfs:Resource. See http://www.w3.org/TR/rdf-schema/#ch_resource
+</rdfs:comment>
+        <rdfs:seeAlso>http://www.w3.org/TR/rdf-schema/#ch_resource</rdfs:seeAlso>
+    </owl:Class>
+
 
 
     <!-- http://www.w3.org/ns/prov#Activity -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/prov#Activity">
-        <rdfs:comment>An activity is something that occurs over a period of time and acts upon or with entities.  See https://www.w3.org/TR/prov-o/#Activity</rdfs:comment>
+        <rdfs:comment>
+An activity is something that occurs over a period of time and acts upon or with entities. See https://www.w3.org/TR/prov-o/#Activity
+</rdfs:comment>
         <rdfs:seeAlso>https://www.w3.org/TR/prov-o/#Activity</rdfs:seeAlso>
     </owl:Class>
-    
 
 
-    <!-- https://www.w3.org/2000/01/rdf-schema#Resource -->
 
-    <owl:Class rdf:about="https://www.w3.org/2000/01/rdf-schema#Resource">
-        <rdfs:comment>All things described by RDF are resources and are instances of the class rdfs:Resource. See https://www.w3.org/TR/rdf-schema/#ch_resource</rdfs:comment>
-        <rdfs:seeAlso>https://www.w3.org/TR/rdf-schema/#ch_resource</rdfs:seeAlso>
-    </owl:Class>
-    
-
-
-    <!-- 
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Individuals
@@ -395,141 +478,145 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
     <!-- http://purl.org/ontology/rmap#Agent -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#Agent">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventTargetType"/>
+		<rdfs:comment>rmap:Agents can make changes to the RMap database. The rmap:Agent&apos;s URI is associated with each change they make on the database throught the rmap:Event.</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#DiSCO -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#DiSCO">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventTargetType"/>
+		<rdfs:comment>rmap:DiSCO represents a Distributed Scholarly Compound Object. It is inspired by an ore:Aggregation, but is simplified. A DiSCO describes an aggregation of related resources plus additional information about the contents of the aggregation.</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#active -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#active">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#Status"/>
-        <rdfs:comment>A Status indicating that the assertions content of the DiSCO or Agent are assumed to be true and have not been withdrawn by the data creator.</rdfs:comment>
+        <rdfs:comment>
+A Status indicating that the assertions content of the DiSCO or Agent are assumed to be true and have not been withdrawn by the data creator.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#creation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#creation">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An rmap:Event in which a new DiSCO or Agent has been created</rdfs:comment>
+        <rdfs:comment>
+An rmap:Event in which a new DiSCO or Agent has been created
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#deleted -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#deleted">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#Status"/>
-        <rdfs:comment>A Status indicating that a DiSCO has been removed permanently from the database. Only its rmap:Events remain.</rdfs:comment>
+        <rdfs:comment>
+A Status indicating that a DiSCO has been removed permanently from the database. Only its rmap:Events remain.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#deletion -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#deletion">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An rmap:Event in which a DiSCO is deleted from the databse, only the related rmap:Events remain.</rdfs:comment>
+        <rdfs:comment>
+An rmap:Event in which a DiSCO is deleted from the databse, only the related rmap:Events remain.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#derivation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#derivation">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An Event in which and updated version of a DiSCO has been asserted by an Agent other than the original creating Agent.  The original DiSCO is active, but a new version is now linked.</rdfs:comment>
+        <rdfs:comment>
+An Event in which and updated version of a DiSCO has been asserted by an Agent other than the original creating Agent. The original DiSCO is active, but a new version is now linked.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#inactivation -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#inactivation">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An rmap:Event in which a DiSCO is inactivated and a new version is not provided.</rdfs:comment>
+        <rdfs:comment>
+An rmap:Event in which a DiSCO is inactivated and a new version is not provided.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#inactive -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#inactive">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#Status"/>
-        <rdfs:comment>A Status indicating that he Agent that created the DiSCO has withdrawn or updated them.  Assertions in an inactive DiSCO may be untrue or out of date.</rdfs:comment>
+        <rdfs:comment>
+A Status indicating that he Agent that created the DiSCO has withdrawn or updated them. Assertions in an inactive DiSCO may be untrue or out of date.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#replace -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#replace">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An rmap:Event in which an rmap:Agent has been updated - the original version has been replaced but the ID for the Agent remains the same. Note that Agents are mutable, but DiSCOs are not.</rdfs:comment>
+        <rdfs:comment>
+An rmap:Event in which an rmap:Agent has been updated - the original version has been replaced but the ID for the Agent remains the same. Note that Agents are mutable, but DiSCOs are not.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#tombstone -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#tombstone">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An rmap:Event in which a DiSCO has been tombstoned.  This is a soft delete in which the DiSCO should no longer be visible via the user interfaces, but the data will remain in the database.</rdfs:comment>
+        <rdfs:comment>
+An rmap:Event in which a DiSCO has been tombstoned. This is a soft delete in which the DiSCO should no longer be visible via the user interfaces, but the data will remain in the database.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#tombstoned -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#tombstoned">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#Status"/>
-        <rdfs:comment>A Status indicating that a DiSCO has been soft deleted, meaning that public users cannot access the data, but it is still visible by accessing the database directly.  The rmap:Events relating to the DiSCO still exist and are visible.</rdfs:comment>
+        <rdfs:comment>
+A Status indicating that a DiSCO has been soft deleted, meaning that public users cannot access the data, but it is still visible by accessing the database directly. The rmap:Events relating to the DiSCO still exist and are visible.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://purl.org/ontology/rmap#update -->
 
     <owl:NamedIndividual rdf:about="http://purl.org/ontology/rmap#update">
         <rdf:type rdf:resource="http://purl.org/ontology/rmap#EventType"/>
-        <rdfs:comment>An Event in which a DiSCO is been updated by the same Agent that created it.  in this instance, the previous version is inactivated, a new one is created.</rdfs:comment>
+        <rdfs:comment>
+An Event in which a DiSCO is been updated by the same Agent that created it. in this instance, the previous version is inactivated, a new one is created.
+</rdfs:comment>
     </owl:NamedIndividual>
-    
 
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="http://purl.org/ontology/rmap#Agent">
-        <rdfs:comment>rmap:Agents can make changes to the RMap database.  The rmap:Agent&apos;s URI is associated with each change they make on the database throught the rmap:Event.</rdfs:comment>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://purl.org/ontology/rmap#DiSCO">
-        <rdfs:comment>rmap:DiSCO represents a Distributed Scholarly Compound Object.  It is inspired by an ore:Aggregation, but is simplified.  A DiSCO describes an aggregation of related resources plus additional information about the contents of the aggregation.</rdfs:comment>
-    </rdf:Description>
 </rdf:RDF>
 
 
 
 <!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
-
